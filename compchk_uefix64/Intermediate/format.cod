@@ -1,0 +1,1046 @@
+	.text
+	.def	 @feat.00;
+	.scl	3;
+	.type	0;
+	.endef
+	.globl	@feat.00
+.set @feat.00, 0
+	.intel_syntax noprefix
+	.file	"format.c"
+	.def	 StringVPrintfW;
+	.scl	2;
+	.type	32;
+	.endef
+	.globl	StringVPrintfW          # -- Begin function StringVPrintfW
+	.p2align	4, 0x90
+StringVPrintfW:                         # @StringVPrintfW
+.Lfunc_begin0:
+	.cv_func_id 0
+	.cv_file	1 "D:\\Projects\\HelloUefiBmpRes\\format.c" "DD45F1752682B6B4B63B6376A330D977" 1
+	.cv_loc	0 1 7 0                 # .\format.c:7:0
+.seh_proc StringVPrintfW
+# %bb.0:
+	sub	rsp, 264
+	.seh_stackalloc 264
+	.seh_endprologue
+	xor	eax, eax
+	mov	qword ptr [rsp + 256], r9
+	mov	qword ptr [rsp + 248], r8
+	mov	qword ptr [rsp + 240], rdx
+	mov	qword ptr [rsp + 232], rcx
+.Ltmp0:
+	.cv_loc	0 1 8 0                 # .\format.c:8:0
+	mov	rcx, qword ptr [rsp + 232]
+	mov	qword ptr [rsp + 224], rcx
+	.cv_loc	0 1 9 0                 # .\format.c:9:0
+	mov	qword ptr [rsp + 216], 0
+	mov	qword ptr [rsp + 208], 0
+	.cv_loc	0 1 10 0                # .\format.c:10:0
+	mov	rcx, qword ptr [rsp + 240]
+	shl	rcx, 1
+	mov	rdx, qword ptr [rsp + 224]
+	mov	qword ptr [rsp + 40], rcx # 8-byte Spill
+	mov	rcx, rdx
+	mov	edx, eax
+	mov	r8, qword ptr [rsp + 40] # 8-byte Reload
+	call	FillMemory
+.LBB0_1:                                # =>This Inner Loop Header: Depth=1
+.Ltmp1:
+	.cv_loc	0 1 11 0                # .\format.c:11:0
+	mov	rax, qword ptr [rsp + 248]
+	mov	rcx, qword ptr [rsp + 216]
+	cmp	word ptr [rax + 2*rcx], 0
+	je	.LBB0_24
+# %bb.2:                                #   in Loop: Header=BB0_1 Depth=1
+.Ltmp2:
+	.cv_loc	0 1 13 0                # .\format.c:13:0
+	mov	rax, qword ptr [rsp + 248]
+	mov	rcx, qword ptr [rsp + 216]
+	movzx	edx, word ptr [rax + 2*rcx]
+	cmp	edx, 37
+	jne	.LBB0_19
+# %bb.3:                                #   in Loop: Header=BB0_1 Depth=1
+.Ltmp3:
+	.cv_loc	0 1 15 0                # .\format.c:15:0
+	mov	qword ptr [rsp + 200], 1
+	.cv_loc	0 1 16 0                # .\format.c:16:0
+	mov	rax, qword ptr [rsp + 248]
+	mov	rcx, qword ptr [rsp + 216]
+	movzx	edx, word ptr [rax + 2*rcx + 2]
+	add	edx, -88
+	mov	eax, edx
+	sub	edx, 32
+	mov	qword ptr [rsp + 32], rax # 8-byte Spill
+	ja	.LBB0_17
+# %bb.25:                               #   in Loop: Header=BB0_1 Depth=1
+	lea	rax, [rip + .LJTI0_0]
+	mov	rcx, qword ptr [rsp + 32] # 8-byte Reload
+	movsxd	rdx, dword ptr [rax + 4*rcx]
+	add	rdx, rax
+	jmp	rdx
+.LBB0_4:                                #   in Loop: Header=BB0_1 Depth=1
+.Ltmp4:
+	.cv_loc	0 1 20 0                # .\format.c:20:0
+	mov	rax, qword ptr [rsp + 256]
+	mov	rcx, rax
+	add	rcx, 8
+	mov	qword ptr [rsp + 256], rcx
+	mov	dl, byte ptr [rax]
+	mov	byte ptr [rsp + 199], dl
+	.cv_loc	0 1 21 0                # .\format.c:21:0
+	movsx	r8d, byte ptr [rsp + 199]
+                                        # kill: def $r8w killed $r8w killed $r8d
+	mov	rax, qword ptr [rsp + 224]
+	mov	rcx, qword ptr [rsp + 208]
+	mov	word ptr [rax + 2*rcx], r8w
+	.cv_loc	0 1 22 0                # .\format.c:22:0
+	mov	qword ptr [rsp + 200], 1
+	.cv_loc	0 1 23 0                # .\format.c:23:0
+	jmp	.LBB0_18
+.Ltmp5:
+.LBB0_5:                                #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 27 0                # .\format.c:27:0
+	lea	rdx, [rsp + 160]
+.Ltmp6:
+	mov	rax, qword ptr [rsp + 256]
+	mov	rcx, rax
+	add	rcx, 8
+	mov	qword ptr [rsp + 256], rcx
+	mov	r8d, dword ptr [rax]
+	mov	dword ptr [rsp + 192], r8d
+.Ltmp7:
+	#DEBUG_VALUE: s <- [$rdx+0]
+	.cv_loc	0 1 29 0                # .\format.c:29:0
+	mov	ecx, dword ptr [rsp + 192]
+	call	IntegerToDecimalW
+.Ltmp8:
+	lea	rcx, [rsp + 160]
+	.cv_loc	0 1 30 0                # .\format.c:30:0
+	call	StringLengthW
+	lea	rdx, [rsp + 160]
+	mov	qword ptr [rsp + 200], rax
+	.cv_loc	0 1 31 0                # .\format.c:31:0
+	mov	rax, qword ptr [rsp + 240]
+	sub	rax, qword ptr [rsp + 208]
+	mov	rcx, qword ptr [rsp + 224]
+	mov	r9, qword ptr [rsp + 208]
+	shl	r9, 1
+	add	rcx, r9
+	mov	r8, rax
+	call	StringCopyNW
+	.cv_loc	0 1 32 0                # .\format.c:32:0
+	mov	rcx, qword ptr [rsp + 216]
+	add	rcx, 1
+	mov	qword ptr [rsp + 216], rcx
+	.cv_loc	0 1 33 0                # .\format.c:33:0
+	jmp	.LBB0_18
+.Ltmp9:
+.LBB0_6:                                #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 37 0                # .\format.c:37:0
+	jmp	.LBB0_18
+.Ltmp10:
+.LBB0_7:                                #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 41 0                # .\format.c:41:0
+	mov	rax, qword ptr [rsp + 256]
+	mov	rcx, rax
+	add	rcx, 8
+	mov	qword ptr [rsp + 256], rcx
+	mov	rax, qword ptr [rax]
+	mov	qword ptr [rsp + 152], rax
+	.cv_loc	0 1 42 0                # .\format.c:42:0
+	mov	rax, qword ptr [rsp + 240]
+	sub	rax, qword ptr [rsp + 208]
+	mov	rdx, qword ptr [rsp + 152]
+	mov	rcx, qword ptr [rsp + 224]
+	mov	r8, qword ptr [rsp + 208]
+	shl	r8, 1
+	add	rcx, r8
+	mov	r8, rax
+	call	StringAnsiToUnicode
+	.cv_loc	0 1 43 0                # .\format.c:43:0
+	mov	rax, qword ptr [rsp + 224]
+	mov	rcx, qword ptr [rsp + 208]
+	shl	rcx, 1
+	add	rax, rcx
+	mov	rcx, rax
+	call	StringLengthW
+	mov	qword ptr [rsp + 200], rax
+	.cv_loc	0 1 44 0                # .\format.c:44:0
+	mov	rax, qword ptr [rsp + 216]
+	add	rax, 1
+	mov	qword ptr [rsp + 216], rax
+	.cv_loc	0 1 45 0                # .\format.c:45:0
+	jmp	.LBB0_18
+.Ltmp11:
+.LBB0_8:                                #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 49 0                # .\format.c:49:0
+	mov	rax, qword ptr [rsp + 248]
+	mov	rcx, qword ptr [rsp + 216]
+	movzx	edx, word ptr [rax + 2*rcx + 4]
+	cmp	edx, 99
+	jne	.LBB0_10
+# %bb.9:                                #   in Loop: Header=BB0_1 Depth=1
+.Ltmp12:
+	.cv_loc	0 1 51 0                # .\format.c:51:0
+	mov	rax, qword ptr [rsp + 256]
+	mov	rcx, rax
+	add	rcx, 8
+	mov	qword ptr [rsp + 256], rcx
+	mov	dx, word ptr [rax]
+	mov	word ptr [rsp + 150], dx
+	.cv_loc	0 1 52 0                # .\format.c:52:0
+	mov	qword ptr [rsp + 200], 1
+	.cv_loc	0 1 53 0                # .\format.c:53:0
+	mov	dx, word ptr [rsp + 150]
+	mov	rax, qword ptr [rsp + 224]
+	mov	rcx, qword ptr [rsp + 208]
+	mov	word ptr [rax + 2*rcx], dx
+	.cv_loc	0 1 54 0                # .\format.c:54:0
+	mov	rax, qword ptr [rsp + 216]
+	add	rax, 2
+	mov	qword ptr [rsp + 216], rax
+	.cv_loc	0 1 55 0                # .\format.c:55:0
+	jmp	.LBB0_14
+.Ltmp13:
+.LBB0_10:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 56 0                # .\format.c:56:0
+	mov	rax, qword ptr [rsp + 248]
+	mov	rcx, qword ptr [rsp + 216]
+	movzx	edx, word ptr [rax + 2*rcx + 4]
+	cmp	edx, 115
+	jne	.LBB0_12
+# %bb.11:                               #   in Loop: Header=BB0_1 Depth=1
+.Ltmp14:
+	.cv_loc	0 1 58 0                # .\format.c:58:0
+	mov	rax, qword ptr [rsp + 256]
+	mov	rcx, rax
+	add	rcx, 8
+	mov	qword ptr [rsp + 256], rcx
+	mov	rax, qword ptr [rax]
+	mov	qword ptr [rsp + 136], rax
+	.cv_loc	0 1 59 0                # .\format.c:59:0
+	mov	rcx, qword ptr [rsp + 136]
+	call	StringLengthW
+	mov	qword ptr [rsp + 200], rax
+	.cv_loc	0 1 60 0                # .\format.c:60:0
+	mov	rax, qword ptr [rsp + 240]
+	sub	rax, qword ptr [rsp + 208]
+	mov	rdx, qword ptr [rsp + 136]
+	mov	rcx, qword ptr [rsp + 224]
+	mov	r8, qword ptr [rsp + 208]
+	shl	r8, 1
+	add	rcx, r8
+	mov	r8, rax
+	call	StringCopyNW
+	.cv_loc	0 1 61 0                # .\format.c:61:0
+	mov	rcx, qword ptr [rsp + 216]
+	add	rcx, 2
+	mov	qword ptr [rsp + 216], rcx
+	.cv_loc	0 1 62 0                # .\format.c:62:0
+	jmp	.LBB0_13
+.Ltmp15:
+.LBB0_12:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 65 0                # .\format.c:65:0
+	mov	qword ptr [rsp + 200], 2
+	.cv_loc	0 1 66 0                # .\format.c:66:0
+	mov	rax, qword ptr [rsp + 224]
+	mov	rcx, qword ptr [rsp + 208]
+	mov	word ptr [rax + 2*rcx], 37
+	.cv_loc	0 1 67 0                # .\format.c:67:0
+	mov	rax, qword ptr [rsp + 224]
+	mov	rcx, qword ptr [rsp + 208]
+	mov	word ptr [rax + 2*rcx + 2], 119
+	.cv_loc	0 1 68 0                # .\format.c:68:0
+	mov	rax, qword ptr [rsp + 216]
+	add	rax, 2
+	mov	qword ptr [rsp + 216], rax
+.Ltmp16:
+.LBB0_13:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 56 0                # .\format.c:56:0
+	jmp	.LBB0_14
+.Ltmp17:
+.LBB0_14:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 70 0                # .\format.c:70:0
+	jmp	.LBB0_18
+.Ltmp18:
+.LBB0_15:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 74 0                # .\format.c:74:0
+	lea	rdx, [rsp + 96]
+.Ltmp19:
+	mov	rax, qword ptr [rsp + 256]
+	mov	rcx, rax
+	add	rcx, 8
+	mov	qword ptr [rsp + 256], rcx
+	mov	r8d, dword ptr [rax]
+	mov	dword ptr [rsp + 132], r8d
+.Ltmp20:
+	#DEBUG_VALUE: s <- [$rdx+0]
+	.cv_loc	0 1 76 0                # .\format.c:76:0
+	mov	ecx, dword ptr [rsp + 132]
+	call	IntegerToHexW
+.Ltmp21:
+	lea	rcx, [rsp + 96]
+	.cv_loc	0 1 77 0                # .\format.c:77:0
+	call	StringLengthW
+	lea	rdx, [rsp + 96]
+	mov	qword ptr [rsp + 200], rax
+	.cv_loc	0 1 78 0                # .\format.c:78:0
+	mov	rax, qword ptr [rsp + 240]
+	sub	rax, qword ptr [rsp + 208]
+	mov	rcx, qword ptr [rsp + 224]
+	mov	r9, qword ptr [rsp + 208]
+	shl	r9, 1
+	add	rcx, r9
+	mov	r8, rax
+	call	StringCopyNW
+	.cv_loc	0 1 79 0                # .\format.c:79:0
+	mov	rcx, qword ptr [rsp + 216]
+	add	rcx, 1
+	mov	qword ptr [rsp + 216], rcx
+	.cv_loc	0 1 80 0                # .\format.c:80:0
+	jmp	.LBB0_18
+.Ltmp22:
+.LBB0_16:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 84 0                # .\format.c:84:0
+	lea	rdx, [rsp + 48]
+.Ltmp23:
+	mov	rax, qword ptr [rsp + 256]
+	mov	rcx, rax
+	add	rcx, 8
+	mov	qword ptr [rsp + 256], rcx
+	mov	r8d, dword ptr [rax]
+	mov	dword ptr [rsp + 92], r8d
+.Ltmp24:
+	#DEBUG_VALUE: s <- [$rdx+0]
+	.cv_loc	0 1 86 0                # .\format.c:86:0
+	mov	ecx, dword ptr [rsp + 92]
+	call	IntegerToHEXW
+.Ltmp25:
+	lea	rcx, [rsp + 48]
+	.cv_loc	0 1 87 0                # .\format.c:87:0
+	call	StringLengthW
+	lea	rdx, [rsp + 48]
+	mov	qword ptr [rsp + 200], rax
+	.cv_loc	0 1 88 0                # .\format.c:88:0
+	mov	rax, qword ptr [rsp + 240]
+	sub	rax, qword ptr [rsp + 208]
+	mov	rcx, qword ptr [rsp + 224]
+	mov	r9, qword ptr [rsp + 208]
+	shl	r9, 1
+	add	rcx, r9
+	mov	r8, rax
+	call	StringCopyNW
+	.cv_loc	0 1 89 0                # .\format.c:89:0
+	mov	rcx, qword ptr [rsp + 216]
+	add	rcx, 1
+	mov	qword ptr [rsp + 216], rcx
+	.cv_loc	0 1 90 0                # .\format.c:90:0
+	jmp	.LBB0_18
+.Ltmp26:
+.LBB0_17:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 94 0                # .\format.c:94:0
+	mov	rax, qword ptr [rsp + 224]
+	mov	rcx, qword ptr [rsp + 208]
+	mov	word ptr [rax + 2*rcx], 37
+.Ltmp27:
+.LBB0_18:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 98 0                # .\format.c:98:0
+	mov	rax, qword ptr [rsp + 200]
+	add	rax, qword ptr [rsp + 208]
+	mov	qword ptr [rsp + 208], rax
+	.cv_loc	0 1 99 0                # .\format.c:99:0
+	jmp	.LBB0_20
+.Ltmp28:
+.LBB0_19:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 101 0               # .\format.c:101:0
+	mov	rax, qword ptr [rsp + 248]
+	mov	rcx, qword ptr [rsp + 216]
+	mov	dx, word ptr [rax + 2*rcx]
+	mov	rax, qword ptr [rsp + 224]
+	mov	rcx, qword ptr [rsp + 208]
+	mov	r8, rcx
+	add	r8, 1
+	mov	qword ptr [rsp + 208], r8
+	mov	word ptr [rax + 2*rcx], dx
+.Ltmp29:
+.LBB0_20:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 102 0               # .\format.c:102:0
+	mov	rax, qword ptr [rsp + 208]
+	cmp	rax, qword ptr [rsp + 240]
+	jb	.LBB0_22
+# %bb.21:
+.Ltmp30:
+	.cv_loc	0 1 104 0               # .\format.c:104:0
+	mov	rax, qword ptr [rsp + 240]
+	mov	qword ptr [rsp + 208], rax
+	.cv_loc	0 1 105 0               # .\format.c:105:0
+	jmp	.LBB0_24
+.Ltmp31:
+.LBB0_22:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 107 0               # .\format.c:107:0
+	jmp	.LBB0_23
+.Ltmp32:
+.LBB0_23:                               #   in Loop: Header=BB0_1 Depth=1
+	.cv_loc	0 1 11 0                # .\format.c:11:0
+	mov	rax, qword ptr [rsp + 216]
+	add	rax, 1
+	mov	qword ptr [rsp + 216], rax
+	jmp	.LBB0_1
+.Ltmp33:
+.LBB0_24:
+	.cv_loc	0 1 108 0               # .\format.c:108:0
+	mov	rax, qword ptr [rsp + 208]
+                                        # kill: def $eax killed $eax killed $rax
+	add	rsp, 264
+	ret
+.Ltmp34:
+.Lfunc_end0:
+	.p2align	2, 0x90
+.LJTI0_0:
+	.long	.LBB0_16-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_4-.LJTI0_0
+	.long	.LBB0_5-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_6-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_7-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_17-.LJTI0_0
+	.long	.LBB0_8-.LJTI0_0
+	.long	.LBB0_15-.LJTI0_0
+	.seh_handlerdata
+	.text
+	.seh_endproc
+                                        # -- End function
+	.def	 ConsolePrintfW;
+	.scl	2;
+	.type	32;
+	.endef
+	.globl	ConsolePrintfW          # -- Begin function ConsolePrintfW
+	.p2align	4, 0x90
+ConsolePrintfW:                         # @ConsolePrintfW
+.Lfunc_begin1:
+	.cv_func_id 1
+	.cv_loc	1 1 112 0               # .\format.c:112:0
+.seh_proc ConsolePrintfW
+# %bb.0:
+	sub	rsp, 1096
+	.seh_stackalloc 1096
+	.seh_endprologue
+	mov	qword ptr [rsp + 1128], r9
+	mov	qword ptr [rsp + 1120], r8
+	mov	qword ptr [rsp + 1112], rdx
+	mov	qword ptr [rsp + 1088], rcx
+.Ltmp35:
+	.cv_loc	1 1 114 0               # .\format.c:114:0
+	mov	dword ptr [rsp + 60], 0
+	lea	rax, [rsp + 1112]
+	.cv_loc	1 1 116 0               # .\format.c:116:0
+	mov	qword ptr [rsp + 48], rax
+	.cv_loc	1 1 117 0               # .\format.c:117:0
+	mov	r9, qword ptr [rsp + 48]
+	mov	r8, qword ptr [rsp + 1088]
+	lea	rax, [rsp + 64]
+	mov	edx, 512
+	mov	rcx, rax
+	mov	qword ptr [rsp + 40], rax # 8-byte Spill
+	call	StringVPrintfW
+	mov	dword ptr [rsp + 60], eax
+	.cv_loc	1 1 119 0               # .\format.c:119:0
+	mov	rcx, qword ptr [rip + StdOut]
+	mov	rdx, qword ptr [rcx + 8]
+	mov	r8, qword ptr [rsp + 40] # 8-byte Reload
+	mov	qword ptr [rsp + 32], rdx # 8-byte Spill
+	mov	rdx, r8
+	mov	r9, qword ptr [rsp + 32] # 8-byte Reload
+	call	r9
+	.cv_loc	1 1 120 0               # .\format.c:120:0
+	nop
+	add	rsp, 1096
+	ret
+.Ltmp36:
+.Lfunc_end1:
+	.seh_handlerdata
+	.text
+	.seh_endproc
+                                        # -- End function
+	.section	.drectve,"yn"
+	.ascii	" /DEFAULTLIB:libcmt.lib"
+	.ascii	" /DEFAULTLIB:oldnames.lib"
+	.section	.debug$S,"dr"
+	.p2align	2
+	.long	4                       # Debug section magic
+	.long	241
+	.long	.Ltmp38-.Ltmp37         # Subsection size
+.Ltmp37:
+	.short	.Ltmp40-.Ltmp39         # Record length
+.Ltmp39:
+	.short	4412                    # Record kind: S_COMPILE3
+	.long	0                       # Flags and language
+	.short	208                     # CPUType
+	.short	10                      # Frontend version
+	.short	0
+	.short	0
+	.short	0
+	.short	10000                   # Backend version
+	.short	0
+	.short	0
+	.short	0
+	.asciz	"clang version 10.0.0 " # Null-terminated compiler version string
+	.p2align	2
+.Ltmp40:
+.Ltmp38:
+	.p2align	2
+	.long	241                     # Symbol subsection for StringVPrintfW
+	.long	.Ltmp42-.Ltmp41         # Subsection size
+.Ltmp41:
+	.short	.Ltmp44-.Ltmp43         # Record length
+.Ltmp43:
+	.short	4423                    # Record kind: S_GPROC32_ID
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	0                       # PtrNext
+	.long	.Lfunc_end0-StringVPrintfW # Code size
+	.long	0                       # Offset after prologue
+	.long	0                       # Offset before epilogue
+	.long	4098                    # Function type index
+	.secrel32	StringVPrintfW  # Function section relative address
+	.secidx	StringVPrintfW          # Function section index
+	.byte	0                       # Flags
+	.asciz	"StringVPrintfW"        # Function name
+	.p2align	2
+.Ltmp44:
+	.short	.Ltmp46-.Ltmp45         # Record length
+.Ltmp45:
+	.short	4114                    # Record kind: S_FRAMEPROC
+	.long	264                     # FrameSize
+	.long	0                       # Padding
+	.long	0                       # Offset of padding
+	.long	0                       # Bytes of callee saved registers
+	.long	0                       # Exception handler offset
+	.short	0                       # Exception handler section
+	.long	81920                   # Flags (defines frame register)
+	.p2align	2
+.Ltmp46:
+	.short	.Ltmp48-.Ltmp47         # Record length
+.Ltmp47:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	1569                    # TypeIndex
+	.short	1                       # Flags
+	.asciz	"Output"
+	.p2align	2
+.Ltmp48:
+	.cv_def_range	 .Ltmp0 .Ltmp34, frame_ptr_rel, 232
+	.short	.Ltmp50-.Ltmp49         # Record length
+.Ltmp49:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	35                      # TypeIndex
+	.short	1                       # Flags
+	.asciz	"Limit"
+	.p2align	2
+.Ltmp50:
+	.cv_def_range	 .Ltmp0 .Ltmp34, frame_ptr_rel, 240
+	.short	.Ltmp52-.Ltmp51         # Record length
+.Ltmp51:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	1569                    # TypeIndex
+	.short	1                       # Flags
+	.asciz	"Format"
+	.p2align	2
+.Ltmp52:
+	.cv_def_range	 .Ltmp0 .Ltmp34, frame_ptr_rel, 248
+	.short	.Ltmp54-.Ltmp53         # Record length
+.Ltmp53:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	1648                    # TypeIndex
+	.short	1                       # Flags
+	.asciz	"ArgList"
+	.p2align	2
+.Ltmp54:
+	.cv_def_range	 .Ltmp0 .Ltmp34, frame_ptr_rel, 256
+	.short	.Ltmp56-.Ltmp55         # Record length
+.Ltmp55:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	1569                    # TypeIndex
+	.short	0                       # Flags
+	.asciz	"buf"
+	.p2align	2
+.Ltmp56:
+	.cv_def_range	 .Ltmp0 .Ltmp34, frame_ptr_rel, 224
+	.short	.Ltmp58-.Ltmp57         # Record length
+.Ltmp57:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	35                      # TypeIndex
+	.short	0                       # Flags
+	.asciz	"i"
+	.p2align	2
+.Ltmp58:
+	.cv_def_range	 .Ltmp0 .Ltmp34, frame_ptr_rel, 216
+	.short	.Ltmp60-.Ltmp59         # Record length
+.Ltmp59:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	35                      # TypeIndex
+	.short	0                       # Flags
+	.asciz	"j"
+	.p2align	2
+.Ltmp60:
+	.cv_def_range	 .Ltmp0 .Ltmp34, frame_ptr_rel, 208
+	.short	.Ltmp62-.Ltmp61         # Record length
+.Ltmp61:
+	.short	4355                    # Record kind: S_BLOCK32
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	.Ltmp28-.Ltmp3          # Code size
+	.secrel32	.Ltmp3          # Function section relative address
+	.secidx	.Lfunc_begin0           # Function section index
+	.byte	0                       # Lexical block name
+	.p2align	2
+.Ltmp62:
+	.short	.Ltmp64-.Ltmp63         # Record length
+.Ltmp63:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	35                      # TypeIndex
+	.short	0                       # Flags
+	.asciz	"inc"
+	.p2align	2
+.Ltmp64:
+	.cv_def_range	 .Ltmp3 .Ltmp28, frame_ptr_rel, 200
+	.short	.Ltmp66-.Ltmp65         # Record length
+.Ltmp65:
+	.short	4355                    # Record kind: S_BLOCK32
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	.Ltmp5-.Ltmp4           # Code size
+	.secrel32	.Ltmp4          # Function section relative address
+	.secidx	.Lfunc_begin0           # Function section index
+	.byte	0                       # Lexical block name
+	.p2align	2
+.Ltmp66:
+	.short	.Ltmp68-.Ltmp67         # Record length
+.Ltmp67:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	112                     # TypeIndex
+	.short	0                       # Flags
+	.asciz	"c"
+	.p2align	2
+.Ltmp68:
+	.cv_def_range	 .Ltmp4 .Ltmp5, frame_ptr_rel, 199
+	.short	2                       # Record length
+	.short	6                       # Record kind: S_END
+	.short	.Ltmp70-.Ltmp69         # Record length
+.Ltmp69:
+	.short	4355                    # Record kind: S_BLOCK32
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	.Ltmp9-.Ltmp6           # Code size
+	.secrel32	.Ltmp6          # Function section relative address
+	.secidx	.Lfunc_begin0           # Function section index
+	.byte	0                       # Lexical block name
+	.p2align	2
+.Ltmp70:
+	.short	.Ltmp72-.Ltmp71         # Record length
+.Ltmp71:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	116                     # TypeIndex
+	.short	0                       # Flags
+	.asciz	"n"
+	.p2align	2
+.Ltmp72:
+	.cv_def_range	 .Ltmp6 .Ltmp9, frame_ptr_rel, 192
+	.short	.Ltmp74-.Ltmp73         # Record length
+.Ltmp73:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	4099                    # TypeIndex
+	.short	0                       # Flags
+	.asciz	"s"
+	.p2align	2
+.Ltmp74:
+	.cv_def_range	 .Ltmp6 .Ltmp9, frame_ptr_rel, 160
+	.short	2                       # Record length
+	.short	6                       # Record kind: S_END
+	.short	.Ltmp76-.Ltmp75         # Record length
+.Ltmp75:
+	.short	4355                    # Record kind: S_BLOCK32
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	.Ltmp11-.Ltmp10         # Code size
+	.secrel32	.Ltmp10         # Function section relative address
+	.secidx	.Lfunc_begin0           # Function section index
+	.byte	0                       # Lexical block name
+	.p2align	2
+.Ltmp76:
+	.short	.Ltmp78-.Ltmp77         # Record length
+.Ltmp77:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	1648                    # TypeIndex
+	.short	0                       # Flags
+	.asciz	"s"
+	.p2align	2
+.Ltmp78:
+	.cv_def_range	 .Ltmp10 .Ltmp11, frame_ptr_rel, 152
+	.short	2                       # Record length
+	.short	6                       # Record kind: S_END
+	.short	.Ltmp80-.Ltmp79         # Record length
+.Ltmp79:
+	.short	4355                    # Record kind: S_BLOCK32
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	.Ltmp13-.Ltmp12         # Code size
+	.secrel32	.Ltmp12         # Function section relative address
+	.secidx	.Lfunc_begin0           # Function section index
+	.byte	0                       # Lexical block name
+	.p2align	2
+.Ltmp80:
+	.short	.Ltmp82-.Ltmp81         # Record length
+.Ltmp81:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	33                      # TypeIndex
+	.short	0                       # Flags
+	.asciz	"c"
+	.p2align	2
+.Ltmp82:
+	.cv_def_range	 .Ltmp12 .Ltmp13, frame_ptr_rel, 150
+	.short	2                       # Record length
+	.short	6                       # Record kind: S_END
+	.short	.Ltmp84-.Ltmp83         # Record length
+.Ltmp83:
+	.short	4355                    # Record kind: S_BLOCK32
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	.Ltmp15-.Ltmp14         # Code size
+	.secrel32	.Ltmp14         # Function section relative address
+	.secidx	.Lfunc_begin0           # Function section index
+	.byte	0                       # Lexical block name
+	.p2align	2
+.Ltmp84:
+	.short	.Ltmp86-.Ltmp85         # Record length
+.Ltmp85:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	1569                    # TypeIndex
+	.short	0                       # Flags
+	.asciz	"s"
+	.p2align	2
+.Ltmp86:
+	.cv_def_range	 .Ltmp14 .Ltmp15, frame_ptr_rel, 136
+	.short	2                       # Record length
+	.short	6                       # Record kind: S_END
+	.short	.Ltmp88-.Ltmp87         # Record length
+.Ltmp87:
+	.short	4355                    # Record kind: S_BLOCK32
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	.Ltmp22-.Ltmp19         # Code size
+	.secrel32	.Ltmp19         # Function section relative address
+	.secidx	.Lfunc_begin0           # Function section index
+	.byte	0                       # Lexical block name
+	.p2align	2
+.Ltmp88:
+	.short	.Ltmp90-.Ltmp89         # Record length
+.Ltmp89:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	116                     # TypeIndex
+	.short	0                       # Flags
+	.asciz	"n"
+	.p2align	2
+.Ltmp90:
+	.cv_def_range	 .Ltmp19 .Ltmp22, frame_ptr_rel, 132
+	.short	.Ltmp92-.Ltmp91         # Record length
+.Ltmp91:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	4099                    # TypeIndex
+	.short	0                       # Flags
+	.asciz	"s"
+	.p2align	2
+.Ltmp92:
+	.cv_def_range	 .Ltmp19 .Ltmp22, frame_ptr_rel, 96
+	.short	2                       # Record length
+	.short	6                       # Record kind: S_END
+	.short	.Ltmp94-.Ltmp93         # Record length
+.Ltmp93:
+	.short	4355                    # Record kind: S_BLOCK32
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	.Ltmp26-.Ltmp23         # Code size
+	.secrel32	.Ltmp23         # Function section relative address
+	.secidx	.Lfunc_begin0           # Function section index
+	.byte	0                       # Lexical block name
+	.p2align	2
+.Ltmp94:
+	.short	.Ltmp96-.Ltmp95         # Record length
+.Ltmp95:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	116                     # TypeIndex
+	.short	0                       # Flags
+	.asciz	"n"
+	.p2align	2
+.Ltmp96:
+	.cv_def_range	 .Ltmp23 .Ltmp26, frame_ptr_rel, 92
+	.short	.Ltmp98-.Ltmp97         # Record length
+.Ltmp97:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	4099                    # TypeIndex
+	.short	0                       # Flags
+	.asciz	"s"
+	.p2align	2
+.Ltmp98:
+	.cv_def_range	 .Ltmp23 .Ltmp26, frame_ptr_rel, 48
+	.short	2                       # Record length
+	.short	6                       # Record kind: S_END
+	.short	2                       # Record length
+	.short	6                       # Record kind: S_END
+	.short	2                       # Record length
+	.short	4431                    # Record kind: S_PROC_ID_END
+.Ltmp42:
+	.p2align	2
+	.cv_linetable	0, StringVPrintfW, .Lfunc_end0
+	.long	241                     # Symbol subsection for ConsolePrintfW
+	.long	.Ltmp100-.Ltmp99        # Subsection size
+.Ltmp99:
+	.short	.Ltmp102-.Ltmp101       # Record length
+.Ltmp101:
+	.short	4423                    # Record kind: S_GPROC32_ID
+	.long	0                       # PtrParent
+	.long	0                       # PtrEnd
+	.long	0                       # PtrNext
+	.long	.Lfunc_end1-ConsolePrintfW # Code size
+	.long	0                       # Offset after prologue
+	.long	0                       # Offset before epilogue
+	.long	4102                    # Function type index
+	.secrel32	ConsolePrintfW  # Function section relative address
+	.secidx	ConsolePrintfW          # Function section index
+	.byte	0                       # Flags
+	.asciz	"ConsolePrintfW"        # Function name
+	.p2align	2
+.Ltmp102:
+	.short	.Ltmp104-.Ltmp103       # Record length
+.Ltmp103:
+	.short	4114                    # Record kind: S_FRAMEPROC
+	.long	1096                    # FrameSize
+	.long	0                       # Padding
+	.long	0                       # Offset of padding
+	.long	0                       # Bytes of callee saved registers
+	.long	0                       # Exception handler offset
+	.short	0                       # Exception handler section
+	.long	81920                   # Flags (defines frame register)
+	.p2align	2
+.Ltmp104:
+	.short	.Ltmp106-.Ltmp105       # Record length
+.Ltmp105:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	1569                    # TypeIndex
+	.short	1                       # Flags
+	.asciz	"Format"
+	.p2align	2
+.Ltmp106:
+	.cv_def_range	 .Ltmp35 .Ltmp36, frame_ptr_rel, 1088
+	.short	.Ltmp108-.Ltmp107       # Record length
+.Ltmp107:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	4103                    # TypeIndex
+	.short	0                       # Flags
+	.asciz	"buf"
+	.p2align	2
+.Ltmp108:
+	.cv_def_range	 .Ltmp35 .Ltmp36, frame_ptr_rel, 64
+	.short	.Ltmp110-.Ltmp109       # Record length
+.Ltmp109:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	116                     # TypeIndex
+	.short	0                       # Flags
+	.asciz	"len"
+	.p2align	2
+.Ltmp110:
+	.cv_def_range	 .Ltmp35 .Ltmp36, frame_ptr_rel, 60
+	.short	.Ltmp112-.Ltmp111       # Record length
+.Ltmp111:
+	.short	4414                    # Record kind: S_LOCAL
+	.long	1648                    # TypeIndex
+	.short	0                       # Flags
+	.asciz	"ArgList"
+	.p2align	2
+.Ltmp112:
+	.cv_def_range	 .Ltmp35 .Ltmp36, frame_ptr_rel, 48
+	.short	2                       # Record length
+	.short	4431                    # Record kind: S_PROC_ID_END
+.Ltmp100:
+	.p2align	2
+	.cv_linetable	1, ConsolePrintfW, .Lfunc_end1
+	.long	241
+	.long	.Ltmp114-.Ltmp113       # Subsection size
+.Ltmp113:
+	.short	.Ltmp116-.Ltmp115       # Record length
+.Ltmp115:
+	.short	4360                    # Record kind: S_UDT
+	.long	33                      # Type
+	.asciz	"CHAR16"
+	.p2align	2
+.Ltmp116:
+	.short	.Ltmp118-.Ltmp117       # Record length
+.Ltmp117:
+	.short	4360                    # Record kind: S_UDT
+	.long	35                      # Type
+	.asciz	"UINT64"
+	.p2align	2
+.Ltmp118:
+	.short	.Ltmp120-.Ltmp119       # Record length
+.Ltmp119:
+	.short	4360                    # Record kind: S_UDT
+	.long	35                      # Type
+	.asciz	"UINTN"
+	.p2align	2
+.Ltmp120:
+	.short	.Ltmp122-.Ltmp121       # Record length
+.Ltmp121:
+	.short	4360                    # Record kind: S_UDT
+	.long	1648                    # Type
+	.asciz	"__builtin_va_list"
+	.p2align	2
+.Ltmp122:
+	.short	.Ltmp124-.Ltmp123       # Record length
+.Ltmp123:
+	.short	4360                    # Record kind: S_UDT
+	.long	1648                    # Type
+	.asciz	"va_list"
+	.p2align	2
+.Ltmp124:
+	.short	.Ltmp126-.Ltmp125       # Record length
+.Ltmp125:
+	.short	4360                    # Record kind: S_UDT
+	.long	112                     # Type
+	.asciz	"CHAR8"
+	.p2align	2
+.Ltmp126:
+.Ltmp114:
+	.p2align	2
+	.cv_filechecksums               # File index to string table offset subsection
+	.cv_stringtable                 # String table
+	.long	241
+	.long	.Ltmp128-.Ltmp127       # Subsection size
+.Ltmp127:
+	.short	.Ltmp130-.Ltmp129       # Record length
+.Ltmp129:
+	.short	4428                    # Record kind: S_BUILDINFO
+	.long	4106                    # LF_BUILDINFO index
+	.p2align	2
+.Ltmp130:
+.Ltmp128:
+	.p2align	2
+	.section	.debug$T,"dr"
+	.p2align	2
+	.long	4                       # Debug section magic
+	# ArgList (0x1000)
+	.short	0x16                    # Record length
+	.short	0x1201                  # Record kind: LF_ARGLIST
+	.long	0x4                     # NumArgs
+	.long	0x621                   # Argument: unsigned short*
+	.long	0x23                    # Argument: unsigned __int64
+	.long	0x621                   # Argument: unsigned short*
+	.long	0x670                   # Argument: char*
+	# Procedure (0x1001)
+	.short	0xe                     # Record length
+	.short	0x1008                  # Record kind: LF_PROCEDURE
+	.long	0x74                    # ReturnType: int
+	.byte	0x0                     # CallingConvention: NearC
+	.byte	0x0                     # FunctionOptions
+	.short	0x4                     # NumParameters
+	.long	0x1000                  # ArgListType: (unsigned short*, unsigned __int64, unsigned short*, char*)
+	# FuncId (0x1002)
+	.short	0x1a                    # Record length
+	.short	0x1601                  # Record kind: LF_FUNC_ID
+	.long	0x0                     # ParentScope
+	.long	0x1001                  # FunctionType: int (unsigned short*, unsigned __int64, unsigned short*, char*)
+	.asciz	"StringVPrintfW"        # Name
+	.byte	241
+	# Array (0x1003)
+	.short	0xe                     # Record length
+	.short	0x1503                  # Record kind: LF_ARRAY
+	.long	0x21                    # ElementType: unsigned short
+	.long	0x23                    # IndexType: unsigned __int64
+	.short	0x20                    # SizeOf
+	.byte	0                       # Name
+	.byte	241
+	# ArgList (0x1004)
+	.short	0xe                     # Record length
+	.short	0x1201                  # Record kind: LF_ARGLIST
+	.long	0x2                     # NumArgs
+	.long	0x621                   # Argument: unsigned short*
+	.long	0x0                     # Argument
+	# Procedure (0x1005)
+	.short	0xe                     # Record length
+	.short	0x1008                  # Record kind: LF_PROCEDURE
+	.long	0x3                     # ReturnType: void
+	.byte	0x0                     # CallingConvention: NearC
+	.byte	0x0                     # FunctionOptions
+	.short	0x2                     # NumParameters
+	.long	0x1004                  # ArgListType: (unsigned short*, <no type>)
+	# FuncId (0x1006)
+	.short	0x1a                    # Record length
+	.short	0x1601                  # Record kind: LF_FUNC_ID
+	.long	0x0                     # ParentScope
+	.long	0x1005                  # FunctionType: void (unsigned short*, <no type>)
+	.asciz	"ConsolePrintfW"        # Name
+	.byte	241
+	# Array (0x1007)
+	.short	0xe                     # Record length
+	.short	0x1503                  # Record kind: LF_ARRAY
+	.long	0x21                    # ElementType: unsigned short
+	.long	0x23                    # IndexType: unsigned __int64
+	.short	0x400                   # SizeOf
+	.byte	0                       # Name
+	.byte	241
+	# StringId (0x1008)
+	.short	0x22                    # Record length
+	.short	0x1605                  # Record kind: LF_STRING_ID
+	.long	0x0                     # Id
+	.asciz	"D:\\Projects\\HelloUefiBmpRes" # StringData
+	# StringId (0x1009)
+	.short	0x12                    # Record length
+	.short	0x1605                  # Record kind: LF_STRING_ID
+	.long	0x0                     # Id
+	.asciz	"format.c"              # StringData
+	.byte	243
+	.byte	242
+	.byte	241
+	# BuildInfo (0x100A)
+	.short	0x1a                    # Record length
+	.short	0x1603                  # Record kind: LF_BUILDINFO
+	.short	0x5                     # NumArgs
+	.long	0x1008                  # Argument: D:\Projects\HelloUefiBmpRes
+	.long	0x0                     # Argument
+	.long	0x1009                  # Argument: format.c
+	.long	0x0                     # Argument
+	.long	0x0                     # Argument
+	.byte	242
+	.byte	241
+	.addrsig
+	.addrsig_sym StringVPrintfW
+	.addrsig_sym FillMemory
+	.addrsig_sym IntegerToDecimalW
+	.addrsig_sym StringLengthW
+	.addrsig_sym StringCopyNW
+	.addrsig_sym StringAnsiToUnicode
+	.addrsig_sym IntegerToHexW
+	.addrsig_sym IntegerToHEXW
+	.addrsig_sym StdOut
