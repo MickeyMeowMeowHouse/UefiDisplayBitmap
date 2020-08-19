@@ -12,7 +12,8 @@ You should install LLVM and EDK II in order to build this project. <br>
 You may download LLVM from GitHub: https://github.com/llvm/llvm-project/releases <br>
 You may download EDK II from GitHub: https://github.com/tianocore/edk2/releases <br>
 For LLVM, you need to install Win64 option. Otherwise, you might have to revise the compilation script. <br>
-For EDK II, download source code of latest release and extract to path `C:\UefiDKII`
+For EDK II, download source code of latest release and extract to path `C:\UefiDKII`. <br>
+If it is your first time of compilation, run `build_prep.bat` prior to building it.
 
 ## Test
 Setup a USB flash stick with GUID Partition Table (GPT). Construct a partition and format it into FAT32 file system. <br>
