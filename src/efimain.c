@@ -13,7 +13,7 @@ EFI_STATUS ConsoleOutput(IN CHAR16 *String)
 EFI_STATUS FindBitmapFromImage(IN EFI_HANDLE ImageHandle,IN UINT32 LangID,IN UINT32 BitmapID,OUT PBITMAPINFOHEADER *BitmapData)
 {
 	EFI_LOADED_IMAGE_PROTOCOL *LoadedImage=NULL;
-	EFI_STATUS st=EfiBoot->HandleProtocol(ImageHandle,&EfiLoadedImageGuid,(VOID**)&LoadedImage);
+	EFI_STATUS st=gBS->HandleProtocol(ImageHandle,&gEfiLoadedImageProtocolGuid,(VOID**)&LoadedImage);
 	if(st==EFI_SUCCESS)
 	{
 		EFI_IMAGE_DOS_HEADER *DosHead=(EFI_IMAGE_DOS_HEADER*)LoadedImage->ImageBase;
@@ -73,7 +73,7 @@ UINT32 ChooseGraphicMode(IN UINT32 Horizontal,IN UINT32 Vertical)
 		EFI_STATUS st=GraphicsOutput->QueryMode(GraphicsOutput,i,&InfoSize,&ModeInfo);
 		if(st==EFI_SUCCESS)
 		{
-			ConsolePrintfW(L"Mode=%d Resolution: %dx%d\r\n",i,ModeInfo->HorizontalResolution,ModeInfo->VerticalResolution);
+			Print(L"Mode=%d Resolution: %dx%d\r\n",i,ModeInfo->HorizontalResolution,ModeInfo->VerticalResolution);
 			if(Horizontal==ModeInfo->HorizontalResolution && Vertical==ModeInfo->VerticalResolution)Index=i;
 		}
 	}
@@ -86,7 +86,7 @@ void BlockUntilKeyStroke(IN CHAR16 Unicode)
 	do
 	{
 		UINTN fi=0;
-		EfiBoot->WaitForEvent(1,&StdIn->WaitForKey,&fi);
+		gBS->WaitForEvent(1,&StdIn->WaitForKey,&fi);
 		StdIn->ReadKeyStroke(StdIn,&InKey);
 	}while(InKey.UnicodeChar!=Unicode);
 }
@@ -113,19 +113,19 @@ void SetBiggestConsole()
 	}
 	StdOut->SetAttribute(StdOut,EFI_WHITE);
 	StdOut->SetMode(StdOut,MaxIndex);
-	ConsolePrintfW(L"Console Resolution: %dx%d\r\n",MaxCol,MaxRow);
+	Print(L"Console Resolution: %dx%d\r\n",MaxCol,MaxRow);
 }
 
-EFI_STATUS EfiInit(IN EFI_SYSTEM_TABLE *SystemTable)
+EFI_STATUS EfiInit(IN EFI_HANDLE ImageHandle,IN EFI_SYSTEM_TABLE *SystemTable)
 {
 	EFI_STATUS st=EFI_SUCCESS;
-	EfiBoot=SystemTable->BootServices;
+	UefiBootServicesTableLibConstructor(ImageHandle,SystemTable);
+	UefiRuntimeServicesTableLibConstructor(ImageHandle,SystemTable);
+	UefiLibConstructor(ImageHandle,SystemTable);
+	DevicePathLibConstructor(ImageHandle,SystemTable);
+	st=gBS->LocateProtocol(&gEfiGraphicsOutputProtocolGuid,NULL,(VOID**)&GraphicsOutput);
 	StdIn=SystemTable->ConIn;
 	StdOut=SystemTable->ConOut;
-	StdErr=SystemTable->StdErr;
-	st=EfiBoot->LocateProtocol(&EfiGraphicsOutputGuid,NULL,(VOID**)&GraphicsOutput);
-	if(st!=EFI_SUCCESS)return st;
-	st=EfiBoot->LocateProtocol(&EfiUnicodeCollationGuid,NULL,(VOID**)&UnicodeCollation);
 	SetBiggestConsole();
 	return st;
 }
@@ -133,7 +133,7 @@ EFI_STATUS EfiInit(IN EFI_SYSTEM_TABLE *SystemTable)
 EFI_STATUS EFIAPI EfiMain(IN EFI_HANDLE ImageHandle,IN EFI_SYSTEM_TABLE *SystemTable)
 {
 	// Initialize Protocols and Variables we need.
-	EFI_STATUS st=EfiInit(SystemTable);
+	EFI_STATUS st=EfiInit(ImageHandle,SystemTable);
 	if(st==EFI_SUCCESS)
 	{
 		PBITMAPINFOHEADER BmpData=NULL;
@@ -143,32 +143,32 @@ EFI_STATUS EFIAPI EfiMain(IN EFI_HANDLE ImageHandle,IN EFI_SYSTEM_TABLE *SystemT
 		{
 			// Choose the Graphics Resolution Mode we need.
 			UINT32 Mode=ChooseGraphicMode(BmpData->PixelWidth,BmpData->PixelHeight);
-			ConsolePrintfW(L"Located Bitmap! Image Size: %dx%d\r\n",BmpData->PixelWidth,BmpData->PixelHeight);
+			Print(L"Located Bitmap! Image Size: %dx%d\r\n",BmpData->PixelWidth,BmpData->PixelHeight);
 			// We don't support BMP Compression.
 			if(BmpData->CompressionType)
 			{
-				ConsoleOutput(L"Bitmap Compression Algorithm is unsupported!\r\n");
+				Print(L"Bitmap Compression Algorithm is unsupported!\r\n");
 				goto Error;
 			}
 			// We support 24-bit True-Color Bitmap only.
 			if(BmpData->BitPerPixel!=24)
 			{
-				ConsoleOutput(L"Only 24-bit True-Color Format Bitmap is supported!\r\n");
+				Print(L"Only 24-bit True-Color Format Bitmap is supported!\r\n");
 				goto Error;
 			}
 			// Check if our mode is supported.
 			if(Mode!=0xFFFFFFFF)
-				ConsolePrintfW(L"We will use Graphics Output Mode %d!\r\n",Mode);
+				Print(L"We will use Graphics Output Mode %d!\r\n",Mode);
 			else
 			{
-				ConsoleOutput(L"Your Graphics Adapter does not support the required resolution!\r\n");
+				Print(L"Your Graphics Adapter does not support the required resolution!\r\n");
 Error:
-				ConsoleOutput(L"Press Enter key to continue...\r\n");
+				Print(L"Press Enter key to continue...\r\n");
 				BlockUntilKeyStroke(L'\r');
 				return EFI_UNSUPPORTED;
 			}
 			// Block the console here because we, as users, might want to check what have right now.
-			ConsoleOutput(L"Press Enter key to continue...\r\n");
+			Print(L"Press Enter key to continue...\r\n");
 			BlockUntilKeyStroke(L'\r');
 			// Set the resolution mode. Screen will be cleared simultaneously.
 			st=GraphicsOutput->SetMode(GraphicsOutput,Mode);
@@ -176,7 +176,7 @@ Error:
 			{
 				// Allocate the BLT Buffer we need.
 				EFI_GRAPHICS_OUTPUT_BLT_PIXEL *BltBuffer=NULL;
-				st=EfiBoot->AllocatePool(EfiLoaderData,BmpData->PixelWidth*BmpData->PixelHeight*sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL),(VOID**)&BltBuffer);
+				st=gBS->AllocatePool(EfiLoaderData,BmpData->PixelWidth*BmpData->PixelHeight*sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL),(VOID**)&BltBuffer);
 				if(st==EFI_SUCCESS)
 				{
 					// Get pointer of the Pixel Array.
@@ -205,7 +205,7 @@ Error:
 					// Preparation of BLT Buffer is completed. Perform BLT.
 					st=GraphicsOutput->Blt(GraphicsOutput,BltBuffer,EfiBltBufferToVideo,0,0,0,0,BmpData->PixelWidth,BmpData->PixelHeight,0);
 					// Free BLT Buffer.
-					EfiBoot->FreePool(BltBuffer);
+					gBS->FreePool(BltBuffer);
 				}
 			}
 		}
